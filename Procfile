@@ -1,1 +1,1 @@
-web: gunicorn app:start_app()
+web: gunicorn blog_app:start_app()
