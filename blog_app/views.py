@@ -6,8 +6,8 @@ from . import db
 views = Blueprint("views", __name__)
 
 
-@views.route("/")
-@views.route("/home")
+@views.route("/", methods=['GET', 'POST'])
+@views.route("/home", methods=['GET', 'POST'])
 @login_required
 def home():
     posts = Post.query.all()
