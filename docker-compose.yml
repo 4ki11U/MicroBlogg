@@ -4,7 +4,7 @@ services:
     # Путь до Dockerfile
     build: ./blog_app
     # Имя для создаваемого контейнера
-    container_name: container-1
+    container_name: my-first-container
     # Создание переменных окружения в контейнере
     environment:
       # для отладки (при запуске в релиз убрать!)
