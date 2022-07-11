@@ -1,8 +1,9 @@
 from flask import Blueprint, render_template, redirect, url_for, request, flash
-from . import db
-from .models import User
 from flask_login import login_user, logout_user, login_required, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
+from .models import User
+from . import db
+
 
 auth = Blueprint("auth", __name__)
 
@@ -24,7 +25,7 @@ def login():
         else:
             flash('Email does not exist.', category='error')
 
-    return render_template("login.html", user=current_user)
+    return render_template("auth/login.html", user=current_user)
 
 
 @auth.route("/sign-up", methods=['GET', 'POST'])
@@ -51,15 +52,17 @@ def sign_up():
         elif len(email) < 4:
             flash("Email is invalid.", category='error')
         else:
-            new_user = User(email=email, username=username, password=generate_password_hash(
-                password1, method='sha256'))
+            new_user = User(email=email,
+                            username=username,
+                            password=generate_password_hash(password1, method='sha256')
+                            )
             db.session.add(new_user)
             db.session.commit()
             login_user(new_user, remember=True)
             flash('User created!')
             return redirect(url_for('views.home'))
 
-    return render_template("signup.html", user=current_user)
+    return render_template("auth/signup.html", user=current_user)
 
 
 @auth.route("/logout")

@@ -1,2 +1,40 @@
 # Flask MicroBlogg
 A blog application in python using Flask.
+
+
+Structure of My Progect : 
+
+MicroBlogg/
+├── blog_app
+│   ├── database
+│   │   ├── __init__.py
+│   │   └── blog_database.db
+│   ├── static
+│   │   ├── css
+│   │   │    ├── auth
+│   │   │    │     └── auth.css
+│   │   │    └── navigation
+│   │   │          └── style.css
+│   │   └── index.js
+│   ├── templates
+│   │   ├── auth
+│   │   │      ├── login.html
+│   │   │      └── signup.html
+│   │   ├── posts
+│   │   │      ├── create_post.html
+│   │   │      ├── posts.html
+│   │   │      └── posts_div.html
+│   │   ├── base.html
+│   │   ├── home.html
+│   │   └── index.html
+│   ├── __init__.py
+│   ├── auth.py
+│   ├── Dockerfile
+│   ├── forms.py
+│   ├── models.py
+│   └── views
+├── .gitignore
+├── docker-compose.yml
+├── requirements.txt
+├── REAME.MD
+└── run.py

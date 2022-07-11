@@ -1,9 +1,17 @@
 from flask import Blueprint, render_template, request, flash, redirect, url_for, jsonify
 from flask_login import login_required, current_user
 from .models import Post, User, Comment, Like
+from .forms import CourseForm
 from . import db
 
+
 views = Blueprint("views", __name__)
+
+#@views.route("/", methods=['GET', 'POST'])
+#@views.route("/", methods=['GET', 'POST'])
+# @views.route("/index", methods=['GET', 'POST'])
+# def index():
+#     return render_template("index.html")
 
 
 @views.route("/", methods=['GET', 'POST'])
@@ -19,7 +27,6 @@ def home():
 def create_post():
     if request.method == "POST":
         text = request.form.get('text')
-
         if not text:
             flash('Post cannot be empty', category='error')
         else:
@@ -27,9 +34,9 @@ def create_post():
             db.session.add(post)
             db.session.commit()
             flash('Post created!', category='success')
-            return redirect(url_for('views.home'))
+            return redirect(url_for('.home'))
 
-    return render_template('create_post.html', user=current_user)
+    return render_template('posts/create_post.html', user=current_user)
 
 
 @views.route("/delete-post/<id>")
@@ -46,7 +53,7 @@ def delete_post(id):
         db.session.commit()
         flash('Post deleted.', category='success')
 
-    return redirect(url_for('views.home'))
+    return redirect(url_for('.home'))
 
 
 @views.route("/posts/<username>")
@@ -56,10 +63,10 @@ def posts(username):
 
     if not user:
         flash('No user with that username exists.', category='error')
-        return redirect(url_for('views.home'))
+        return redirect(url_for('.home'))
 
     posts = user.posts
-    return render_template("posts.html", user=current_user, posts=posts, username=username)
+    return render_template("posts/posts.html", user=current_user, posts=posts, username=username)
 
 
 @views.route("/create-comment/<post_id>", methods=['POST'])
@@ -79,7 +86,7 @@ def create_comment(post_id):
         else:
             flash('Post does not exist.', category='error')
 
-    return redirect(url_for('views.home'))
+    return redirect(url_for('.home'))
 
 
 @views.route("/delete-comment/<comment_id>")
@@ -95,7 +102,7 @@ def delete_comment(comment_id):
         db.session.delete(comment)
         db.session.commit()
 
-    return redirect(url_for('views.home'))
+    return redirect(url_for('.home'))
 
 
 @views.route("/like-post/<post_id>", methods=['POST'])
