@@ -21,5 +21,5 @@ services:
     # Открываем порт в контейнер - ./blog_app:/blog_app
     # Порт, который будет смотреть наружу : порт который используется внутри контейнера
     ports:
-      - "5005:5005"
-    command: gunicorn run:"start_app()" -b 0.0.0.0:5005 --reload
+      - "5000:5000"
+    command: gunicorn run:"start_app()" -b 0.0.0.0:5000 --reload
