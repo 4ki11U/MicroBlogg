@@ -1,10 +1,12 @@
-from flask_sqlalchemy import SQLAlchemy
-from flask_login import LoginManager
-from flask import Flask
 from os import path
+
+from flask import Flask
+from flask_login import LoginManager
+from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
 DB_NAME = r'database/blog_database.db'
+
 
 def start_app():
     app = Flask(__name__)
@@ -31,8 +33,8 @@ def start_app():
     def load_user(id):
         return User.query.get(int(id))
 
-
     return app
+
 
 def create_database(app):
     if not path.exists('blog_app' + DB_NAME):
