@@ -1,6 +1,7 @@
-{% extends "base.html" %} {% block title %}Home{% endblock %} {% block content
-%}
+{% extends "base.html" %} {% block title %}Home{% endblock %} {% block content%}
+
 <h1 align="center">{% block header %}Posts{% endblock %}</h1>
+
 <div id="posts">
   {% for post in posts %}
   <div class="card border-dark">
@@ -104,7 +105,7 @@
     </div>
     <div class="card-footer text-muted">{{post.date_created}}</div>
   </div>
-  <br/ > {% endfor %}
+  <br/> {% endfor %}
 </div>
 {% block footer %}
 <div align="center">

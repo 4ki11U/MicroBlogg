@@ -2,3 +2,5 @@
 /app_venv/
 /.idea/
 __pycache__
+
+/blog_app/database/blog_database.db

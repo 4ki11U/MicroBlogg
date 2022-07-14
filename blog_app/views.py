@@ -7,14 +7,28 @@ from . import db
 
 views = Blueprint("views", __name__)
 
-#@views.route("/", methods=['GET', 'POST'])
-#@views.route("/", methods=['GET', 'POST'])
-# @views.route("/index", methods=['GET', 'POST'])
-# def index():
-#     return render_template("index.html")
-
 
 @views.route("/", methods=['GET', 'POST'])
+@views.route("/index", methods=['GET', 'POST'])
+def index():
+    return render_template("main_page/index.html")
+
+
+@views.route("/content-create", methods=['GET', 'POST'])
+def content_create():
+    form = CourseForm()
+    if request.method == "POST":
+        if form.validate_on_submit():
+            print(form.title.data)
+            print(form.description.data)
+            print(form.price.data)
+            print(form.available.data)
+            print(form.level.data)
+            return redirect(url_for('views.home'))
+    return render_template("posts/content-create.html", form=form)
+
+
+#@views.route("/", methods=['GET', 'POST'])
 @views.route("/home", methods=['GET', 'POST'])
 @login_required
 def home():
