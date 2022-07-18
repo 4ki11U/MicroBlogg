@@ -1,14 +1,13 @@
 from flask import Blueprint, render_template, request, flash, redirect, url_for, jsonify
 from flask_login import login_required, current_user
-from .models import Post, User, Comment, Like
-from .forms import CourseForm
-from . import db
 
+from . import db
+from .forms import CourseForm
+from .models import Post, Users, Comment, Like
 
 views = Blueprint("views", __name__)
 
 
-@views.route("/", methods=['GET', 'POST'])
 @views.route("/index", methods=['GET', 'POST'])
 def index():
     return render_template("main_page/index.html")
@@ -28,7 +27,7 @@ def content_create():
     return render_template("posts/content-create.html", form=form)
 
 
-#@views.route("/", methods=['GET', 'POST'])
+@views.route("/", methods=['GET', 'POST'])
 @views.route("/home", methods=['GET', 'POST'])
 @login_required
 def home():
@@ -73,7 +72,7 @@ def delete_post(id):
 @views.route("/posts/<username>")
 @login_required
 def posts(username):
-    user = User.query.filter_by(username=username).first()
+    user = Users.query.filter_by(username=username).first()
 
     if not user:
         flash('No user with that username exists.', category='error')

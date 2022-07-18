@@ -1,9 +1,9 @@
 from flask import Blueprint, render_template, redirect, url_for, request, flash
 from flask_login import login_user, logout_user, login_required, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
-from .models import User
-from . import db
 
+from . import db
+from .models import Users
 
 auth = Blueprint("auth", __name__)
 
@@ -14,7 +14,7 @@ def login():
         email = request.form.get("email")
         password = request.form.get("password")
 
-        user = User.query.filter_by(email=email).first()
+        user = Users.query.filter_by(email=email).first()
         if user:
             if check_password_hash(user.password, password):
                 flash("Logged in!", category='success')
@@ -28,41 +28,41 @@ def login():
     return render_template("auth/login.html", user=current_user)
 
 
-@auth.route("/sign-up", methods=['GET', 'POST'])
-def sign_up():
+@auth.route("/register", methods=['GET', 'POST'])
+def register():
     if request.method == 'POST':
         email = request.form.get("email")
         username = request.form.get("username")
-        password1 = request.form.get("password1")
-        password2 = request.form.get("password2")
+        password = request.form.get("password")
+        password_again = request.form.get("password_again")
 
-        email_exists = User.query.filter_by(email=email).first()
-        username_exists = User.query.filter_by(username=username).first()
+        email_exists = Users.query.filter_by(email=email).first()
+        username_exists = Users.query.filter_by(username=username).first()
 
         if email_exists:
             flash('Email is already in use.', category='error')
         elif username_exists:
             flash('Username is already in use.', category='error')
-        elif password1 != password2:
+        elif password != password_again:
             flash('Password don\'t match!', category='error')
         elif len(username) < 1:
             flash('Username is too short.', category='error')
-        elif len(password1) < 1:
+        elif len(password) < 1:
             flash('Password is too short.', category='error')
         elif len(email) < 1:
             flash("Email is invalid.", category='error')
         else:
-            new_user = User(email=email,
-                            username=username,
-                            password=generate_password_hash(password1, method='sha256')
-                            )
+            new_user = Users(email=email,
+                             username=username,
+                             password=generate_password_hash(password, method='sha256')
+                             )
             db.session.add(new_user)
             db.session.commit()
             login_user(new_user, remember=True)
-            flash('User created!')
+            flash('Users created!')
             return redirect(url_for('views.home'))
 
-    return render_template("auth/signup.html", user=current_user)
+    return render_template("auth/register.html", user=current_user)
 
 
 @auth.route("/logout")

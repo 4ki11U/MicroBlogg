@@ -22,7 +22,7 @@ def start_app():
     from .auth import auth
     app.register_blueprint(auth, url_prefix='/')
 
-    from .models import User, Post, Comment, Like
+    from .models import Users, Post, Comment, Like
     create_database(app)
 
     login_manager = LoginManager()
@@ -31,7 +31,7 @@ def start_app():
 
     @login_manager.user_loader
     def load_user(id):
-        return User.query.get(int(id))
+        return Users.query.get(int(id))
 
     return app
 

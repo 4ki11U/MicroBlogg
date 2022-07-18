@@ -14,7 +14,7 @@
       src="https://kit.fontawesome.com/999ca2bb93.js"
       crossorigin="anonymous"
     ></script>
-    <title>{% block title %}{% endblock %}</title>
+    <title>MicroBlogg</title>
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -29,22 +29,20 @@
         </button>
         <div class="collapse navbar-collapse" id="navbar">
           <div class="navbar-nav">
-            <a class="nav-item nav-link" href="/home">Home</a>
+            <a class="nav-item nav-link" href="/home">Главная страница</a>
             #{% if user.is_authenticated %}
-            <a class="nav-item nav-link" href="/create-post">Create Post</a>
+            <a class="nav-item nav-link" href="/create-post">Create BigMessage</a>
             <a class="nav-item nav-link" href="/content-create">Sozdat with Form Data</a>
-            <a class="nav-item nav-link" href="/logout">Logout from <b>{{user.username}}</b></a>
+            <a class="nav-item nav-link" href="/logout">Выйти как <b>{{user.username}}</b></a>
             {% else %}
             <a class="nav-item nav-link" href="/login">Login</a>
-            <a class="nav-item nav-link" href="/sign-up">Sign Up</a>
+            <a class="nav-item nav-link" href="/register">Register</a>
             {% endif %}
           </div>
         </div>
       </div>
     </nav>
-    {% with messages = get_flashed_messages(with_categories=true) %} {% if
-    messages %} {% for category, message in messages %} {% if category ==
-    'error' %}
+    {% with messages = get_flashed_messages(with_categories=true) %} {% if messages %} {% for category, message in messages %} {% if category == 'error' %}
     <div class="alert alert-danger alter-dismissible fade show" role="alert">
       {{ message }}
       <button type="button" class="btn-close" data-bs-dismiss="alert"></button>

@@ -1,0 +1,47 @@
+{% extends "base.html" %} {% block title %}Sign Up{% endblock %} {% block content %}
+
+<form method="POST">
+    <h3 align="center">Register You're Account</h3>
+    <div class="form-group">
+        <label for="username">Username</label>
+        <input
+                type="text"
+                id="username"
+                name="username"
+                class="form-control"
+                placeholder="Enter You're Nickname on Site"
+        />
+
+        <label for="email">Email Address</label>
+        <input
+                type="text"
+                id="email"
+                name="email"
+                class="form-control"
+                placeholder="Enter Email"
+        />
+
+
+        <label for="password">Password</label>
+        <input
+                type="password"
+                id="password"
+                name="password"
+                class="form-control"
+                placeholder="Enter Password"
+        />
+        <label for="password_again">Password Again</label>
+        <input
+                type="password"
+                id="password_again"
+                name="password_again"
+                class="form-control"
+                placeholder="Enter Password Again"
+        />
+        <br/>
+        <div align="center" class="d-grid gap-2">
+            <button class="btn btn-primary" type="submit">Registration</button>
+        </div>
+    </div>
+</form>
+{% endblock %}
