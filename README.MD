@@ -1,40 +1,47 @@
 # Flask MicroBlogg
-A blog application in python using Flask.
+----------
 
 
-Structure of My Progect : 
+Installing
+----------
 
-MicroBlogg/
-├── blog_app
-│   ├── database
-│   │   ├── __init__.py
-│   │   └── blog_database.db
-│   ├── static
-│   │   ├── css
-│   │   │    ├── auth
-│   │   │    │     └── auth.css
-│   │   │    └── navigation
-│   │   │          └── style.css
-│   │   └── index.js
-│   ├── templates
-│   │   ├── auth
-│   │   │      ├── login.html
-│   │   │      └── signup.html
-│   │   ├── posts
-│   │   │      ├── create_post.html
-│   │   │      ├── posts.html
-│   │   │      └── posts_div.html
-│   │   ├── base.html
-│   │   ├── home.html
-│   │   └── index.html
-│   ├── __init__.py
-│   ├── auth.py
-│   ├── Dockerfile
-│   ├── forms.py
-│   ├── models.py
-│   └── views
-├── .gitignore
-├── docker-compose.yml
-├── requirements.txt
-├── REAME.MD
-└── run.py
+1. Make ure venv : 
+
+
+    $ python -m venv .venv
+
+2. Activate ure venv : 
+
+
+    $ .venv\Scripts\activate
+
+2. Upgrading using `pip`: 
+
+
+    $ python -m pip install --upgrade pip
+
+3. Install out packages :
+
+
+    $ pip install -r requirements.txt
+
+
+Running
+----------
+Run file run.py : 
+
+
+    $ python ./run.py
+
+
+Links
+-----
+
+-   Documentation: https://flask.palletsprojects.com/
+-   Changes: https://flask.palletsprojects.com/changes/
+-   PyPI Releases: https://pypi.org/project/Flask/
+-   Source Code: https://github.com/pallets/flask/
+-   Issue Tracker: https://github.com/pallets/flask/issues/
+-   Website: https://palletsprojects.com/p/flask/
+-   Twitter: https://twitter.com/PalletsTeam
+-   Chat: https://discord.gg/pallets
