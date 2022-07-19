@@ -1,15 +1,19 @@
-{% extends 'posts/basic.html' %}
+{% extends 'base.html' %}
 
 {% block content %}
-    <h1>{% block title %} Add a New Course {% endblock %}</h1>
+    <h1>{% block title %} Составить Отзыв {% endblock %}</h1>
 
-    <form method="POST" action="/content-create">
+    <form method="POST" action="/content_create" >
         {{ form.csrf_token }}
+        <br>
+        {{ form.category.label}}
+        {{ form.category }}
+        <br><br>
+
         <p>
             {{ form.title.label }}
             {{ form.title(size=20) }}
         </p>
-
         {% if form.title.errors %}
             <ul class="errors">
                 {% for error in form.title.errors %}
@@ -17,7 +21,6 @@
                 {% endfor %}
             </ul>
         {% endif %}
-
         <p>
             {{ form.description.label }}
         </p>
@@ -30,47 +33,32 @@
                 {% endfor %}
             </ul>
         {% endif %}
-
+        <br><br>
         <p>
-            {{ form.price.label }}
-            {{ form.price() }}
+            {{ form.rating.label }}
+            {{ form.rating() }}
         </p>
-
-        {% if form.price.errors %}
+        {% if form.rating.errors %}
             <ul class="errors">
-                {% for error in form.price.errors %}
+                {% for error in form.rating.errors %}
                     <li>{{ error }}</li>
                 {% endfor %}
             </ul>
         {% endif %}
-
         <p>
-            {{ form.available() }} {{ form.available.label }}
+            {{ form.recommend.label }}
+            {{ form.recommend() }}
         </p>
-
-        {% if form.available.errors %}
+        {% if form.recommend.errors %}
             <ul class="errors">
-                {% for error in form.available.errors %}
+                {% for error in form.recommend.errors %}
                     <li>{{ error }}</li>
                 {% endfor %}
             </ul>
         {% endif %}
-
+        <br>
         <p>
-            {{ form.level.label }}
-            {{ form.level() }}
-        </p>
-
-        {% if form.level.errors %}
-            <ul class="errors">
-                {% for error in form.level.errors %}
-                    <li>{{ error }}</li>
-                {% endfor %}
-            </ul>
-        {% endif %}
-
-        <p>
-            <input type="submit" value="Add">
+            <input type="submit" value="Отправить отзыв">
         </p>
     </form>
 

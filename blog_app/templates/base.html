@@ -23,66 +23,42 @@
     <title>MicroBlogg</title>
 
     <div class="container">
-    <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+        <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
 
-      <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-          Выпадающее меню
-        </button>
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-          <li><a class="dropdown-item" href="https://www.ign.com/">Видеоигры</a></li>
-          <li><a class="dropdown-item" href="https://megogo.net/ua">Фильмы</a></li>
-          <li><a class="dropdown-item" href="https://uaserials.pro/">Сериалы</a></li>
-          <li><hr class="dropdown-divider"></li>
-          <li><a class="dropdown-item" href="/home">Главная страница</a></li>
-        </ul>
-      </div>
+          <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+              Выпадающее меню
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              <li><a class="dropdown-item" href="https://www.ign.com/">Видеоигры</a></li>
+              <li><a class="dropdown-item" href="https://megogo.net/ua">Фильмы</a></li>
+              <li><a class="dropdown-item" href="https://uaserials.pro/">Сериалы</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="/home">Главная страница</a></li>
+            </ul>
+          </div>
 
-      <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-        {% if user.is_authenticated %}
-        <li><a href="/create-post" class="nav-link px-2 link-dark">Создать сообщение</a></li>
-         {% else %}
-        <li><a href="#" class="nav-link px-2 link-dark" align="center">Про ресурс</a></li>
-        {% endif %}
-      </ul>
+          <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+            {% if user.is_authenticated %}
+            <li><a href="/review-create" class="nav-link px-2 link-dark">Создать сообщение</a></li>
+             {% else %}
+            <li><a href="#" class="nav-link px-2 link-dark" align="center">Про ресурс</a></li>
+            {% endif %}
+          </ul>
 
-      <div class="col-md-3 text-end">
-        {% if user.is_authenticated %}
-        <a href="/logout" class="btn btn-light">Log-out</a>
-        {% else %}
-        <a href="/login" class="btn btn-primary">Login</a>
-        <a href="/register" class="btn btn-light">Register</a>
-        {% endif %}
-      </div>
-    </header>
+          <div class="col-md-3 text-end">
+            {% if user.is_authenticated %}
+            <a href="/logout" class="btn btn-light">Log-out</a>
+            {% else %}
+            <a href="/login" class="btn btn-primary">Login</a>
+            <a href="/register" class="btn btn-light">Register</a>
+            {% endif %}
+          </div>
+        </header>
     </div>
   </head>
 
   <body>
-<!--    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">-->
-<!--      <div class="container-fluid">-->
-<!--        <button-->
-<!--          class="navbar-toggler"-->
-<!--          type="button"-->
-<!--          data-bs-toggle="collapse"-->
-<!--          data-bs-target="#navbar">-->
-<!--          <span class="navbar-toggler-icon"></span>-->
-<!--        </button>-->
-<!--        <div class="collapse navbar-collapse" id="navbar">-->
-<!--          <div class="navbar-nav">-->
-<!--            <a class="nav-item nav-link" href="/home">Главная страница</a>-->
-<!--            #{% if user.is_authenticated %}-->
-<!--            <a class="nav-item nav-link" href="/create-post">Create BigMessage</a>-->
-<!--            <a class="nav-item nav-link" href="/content-create">Sozdat with Form Data</a>-->
-<!--            <a class="nav-item nav-link" href="/logout">Выйти как <b>{{user.username}}</b></a>-->
-<!--            {% else %}-->
-<!--            <a class="nav-item nav-link" href="/login">Login</a>-->
-<!--            <a class="nav-item nav-link" href="/register">Register</a>-->
-<!--            {% endif %}-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </nav>-->
     {% with messages = get_flashed_messages(with_categories=true) %} {% if messages %} {% for category, message in messages %} {% if category == 'error' %}
     <div class="alert alert-danger alter-dismissible fade show" role="alert">
       {{ message }}
